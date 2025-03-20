@@ -15,3 +15,4 @@ H:\JEU_alpha_projet_perso\JEU_alpha_projet_perso\obj\Debug\net8.0-windows\refint
 H:\JEU_alpha_projet_perso\JEU_alpha_projet_perso\obj\Debug\net8.0-windows\JEU_alpha_projet_perso.pdb
 H:\JEU_alpha_projet_perso\JEU_alpha_projet_perso\obj\Debug\net8.0-windows\JEU_alpha_projet_perso.genruntimeconfig.cache
 H:\JEU_alpha_projet_perso\JEU_alpha_projet_perso\obj\Debug\net8.0-windows\ref\JEU_alpha_projet_perso.dll
+H:\JEU_alpha_projet_perso\JEU_alpha_projet_perso\obj\Debug\net8.0-windows\JEU_alpha_projet_perso.sourcelink.json

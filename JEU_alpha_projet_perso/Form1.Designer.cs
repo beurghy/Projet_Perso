@@ -36,12 +36,14 @@
             pictureBox3 = new PictureBox();
             pictureBoxEnemy2 = new PictureBox();
             speedTimer = new System.Windows.Forms.Timer(components);
+            pictureBox4 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBoxTarget).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxMoving).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxEnemy2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             SuspendLayout();
             // 
             // movementTimer
@@ -131,12 +133,21 @@
             speedTimer.Interval = 1000;
             speedTimer.Tick += SpeedTimer_Tick;
             // 
+            // pictureBox4
+            // 
+            pictureBox4.Location = new Point(78, 455);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(79, 74);
+            pictureBox4.TabIndex = 7;
+            pictureBox4.TabStop = false;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkOliveGreen;
             ClientSize = new Size(761, 668);
+            Controls.Add(pictureBox4);
             Controls.Add(pictureBoxEnemy2);
             Controls.Add(pictureBox3);
             Controls.Add(pictureBox1);
@@ -153,8 +164,11 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxEnemy2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
+
+        private PictureBox pictureBox4;
     }
 }

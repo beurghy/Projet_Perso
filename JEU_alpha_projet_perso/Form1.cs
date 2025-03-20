@@ -12,7 +12,7 @@ namespace JEU_alpha_projet_perso
         private Label hpLabel, scoreLabel;
         private double enemy1Speed = 10;
         private double enemy2Speed = 7;
-        private double speedIncrement = 0.1; // Speed increase per second
+        private double speedIncrement = 0.1;
 
         public Form1()
         {
@@ -21,26 +21,22 @@ namespace JEU_alpha_projet_perso
             originalX = pictureBoxMoving.Location.X;
             originalY = pictureBoxMoving.Location.Y;
 
-            // Label HP
             hpLabel = new Label();
             hpLabel.Text = "HP : " + HP;
             hpLabel.Location = new Point(570, 28);
             hpLabel.AutoSize = true;
             this.Controls.Add(hpLabel);
 
-            // Label Score
             scoreLabel = new Label();
             scoreLabel.Text = "Score : " + score;
-            scoreLabel.Location = new Point(10, 10);   // ✅ En haut à gauche
+            scoreLabel.Location = new Point(10, 10);
             scoreLabel.AutoSize = true;
             this.Controls.Add(scoreLabel);
 
-            // Start timers
             movementTimer.Start();
             speedTimer.Start();
         }
 
-        // ✅ Timer that runs every 50ms for movement
         private void MovementTimer_Tick(object sender, EventArgs e)
         {
             if (pictureBoxMoving.Visible)
@@ -77,7 +73,6 @@ namespace JEU_alpha_projet_perso
             }
         }
 
-        // ✅ Click on Moving Enemy (earn points)
         private void PictureBoxMoving_Click(object sender, EventArgs e)
         {
             pictureBoxMoving.Visible = false;
@@ -87,7 +82,6 @@ namespace JEU_alpha_projet_perso
             reappearTimer.Start();
         }
 
-        // ✅ Click on Enemy2 (earn points)
         private void pictureBoxEnemy2_Click(object sender, EventArgs e)
         {
             pictureBoxEnemy2.Visible = false;
@@ -97,7 +91,6 @@ namespace JEU_alpha_projet_perso
             reappearTimer.Start();
         }
 
-        // ✅ Respawn after click
         private void ReappearTimer_Tick(object sender, EventArgs e)
         {
             if (!pictureBoxMoving.Visible)
@@ -112,28 +105,20 @@ namespace JEU_alpha_projet_perso
         private void UpdateHpLabel()
         {
             hpLabel.Text = "HP : " + HP;
-
-            // Calcul de la largeur de la barre de vie (200 - 2 * (100 - HP))
             int newWidth = 200 - (2 * (100 - HP));
-
-            // Évite que la taille devienne négative
             if (newWidth < 0) newWidth = 0;
-
             pictureBox3.Size = new Size(newWidth, pictureBox3.Height);
         }
-
 
         private void UpdateScoreLabel()
         {
             scoreLabel.Text = "Score : " + score;
         }
 
-        // ✅ Speed increase every second
         private void SpeedTimer_Tick(object sender, EventArgs e)
         {
             enemy1Speed += speedIncrement;
             enemy2Speed += speedIncrement;
         }
-
     }
 }
