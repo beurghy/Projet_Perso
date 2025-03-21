@@ -93,6 +93,16 @@ namespace JEU_alpha_projet_perso.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap knight {
+            get {
+                object obj = ResourceManager.GetObject("knight", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap medieval_tower_transparent_removebg_preview {
             get {
                 object obj = ResourceManager.GetObject("medieval_tower_transparent-removebg-preview", resourceCulture);

@@ -6,16 +6,16 @@
         private System.Windows.Forms.PictureBox pictureBoxTarget;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBoxMoving;
-        private System.Windows.Forms.Timer movementTimer;
-        private System.Windows.Forms.Timer reappearTimer;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pictureBoxEnemy2;
+        private System.Windows.Forms.PictureBox pictureBoxArcher;
+        private System.Windows.Forms.PictureBox pictureBoxKnight;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBoxEnemy2;
+        private System.Windows.Forms.Timer movementTimer;
+        private System.Windows.Forms.Timer reappearTimer;
         private System.Windows.Forms.Timer speedTimer;
-        private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Timer loopTimer;
-        
+        private System.Windows.Forms.Label label1;
 
         protected override void Dispose(bool disposing)
         {
@@ -26,8 +26,6 @@
             base.Dispose(disposing);
         }
 
-
-
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
@@ -36,20 +34,23 @@
             pictureBoxTarget = new PictureBox();
             pictureBox2 = new PictureBox();
             pictureBoxMoving = new PictureBox();
-            label1 = new Label();
+            pictureBoxEnemy2 = new PictureBox();
+            pictureBoxArcher = new PictureBox();
+            pictureBoxKnight = new PictureBox();
             pictureBox1 = new PictureBox();
             pictureBox3 = new PictureBox();
-            pictureBoxEnemy2 = new PictureBox();
             speedTimer = new System.Windows.Forms.Timer(components);
-            pictureBox4 = new PictureBox();
             loopTimer = new System.Windows.Forms.Timer(components);
+            knightTimer = new System.Windows.Forms.Timer(components);
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBoxTarget).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxMoving).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxEnemy2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxArcher).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxKnight).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxEnemy2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             SuspendLayout();
             // 
             // movementTimer
@@ -69,7 +70,7 @@
             pictureBoxTarget.Name = "pictureBoxTarget";
             pictureBoxTarget.Size = new Size(858, 720);
             pictureBoxTarget.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBoxTarget.TabIndex = 6;
+            pictureBoxTarget.TabIndex = 7;
             pictureBoxTarget.TabStop = false;
             // 
             // pictureBox2
@@ -79,7 +80,7 @@
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(1079, 320);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox2.TabIndex = 7;
+            pictureBox2.TabIndex = 8;
             pictureBox2.TabStop = false;
             // 
             // pictureBoxMoving
@@ -89,38 +90,9 @@
             pictureBoxMoving.Name = "pictureBoxMoving";
             pictureBoxMoving.Size = new Size(66, 64);
             pictureBoxMoving.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBoxMoving.TabIndex = 5;
+            pictureBoxMoving.TabIndex = 6;
             pictureBoxMoving.TabStop = false;
             pictureBoxMoving.Click += PictureBoxMoving_Click;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(324, 138);
-            label1.MaximumSize = new Size(100, 100);
-            label1.Name = "label1";
-            label1.Size = new Size(43, 15);
-            label1.TabIndex = 100;
-            label1.Text = "health:";
-            label1.Click += label1_Click;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.BackColor = Color.Black;
-            pictureBox1.Location = new Point(520, 86);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(800, 100);
-            pictureBox1.TabIndex = 3;
-            pictureBox1.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            pictureBox3.BackColor = Color.Crimson;
-            pictureBox3.Location = new Point(520, 86);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(800, 100);
-            pictureBox3.TabIndex = 2;
-            pictureBox3.TabStop = false;
             // 
             // pictureBoxEnemy2
             // 
@@ -129,36 +101,80 @@
             pictureBoxEnemy2.Name = "pictureBoxEnemy2";
             pictureBoxEnemy2.Size = new Size(66, 65);
             pictureBoxEnemy2.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBoxEnemy2.TabIndex = 1;
+            pictureBoxEnemy2.TabIndex = 2;
             pictureBoxEnemy2.TabStop = false;
             pictureBoxEnemy2.Click += pictureBoxEnemy2_Click;
+            // 
+            // pictureBoxArcher
+            // 
+            pictureBoxArcher.Image = Properties.Resources.add;
+            pictureBoxArcher.Location = new Point(100, 754);
+            pictureBoxArcher.Name = "pictureBoxArcher";
+            pictureBoxArcher.Size = new Size(100, 100);
+            pictureBoxArcher.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBoxArcher.TabIndex = 0;
+            pictureBoxArcher.TabStop = false;
+            pictureBoxArcher.Click += pictureBoxRecruit_Click;
+            // 
+            // pictureBoxKnight
+            // 
+            pictureBoxKnight.Image = Properties.Resources.add;
+            pictureBoxKnight.Location = new Point(250, 754);
+            pictureBoxKnight.Name = "pictureBoxKnight";
+            pictureBoxKnight.Size = new Size(100, 100);
+            pictureBoxKnight.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBoxKnight.TabIndex = 1;
+            pictureBoxKnight.TabStop = false;
+            pictureBoxKnight.Click += pictureBoxRecruit_Click;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackColor = Color.Black;
+            pictureBox1.Location = new Point(520, 86);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(800, 100);
+            pictureBox1.TabIndex = 4;
+            pictureBox1.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.BackColor = Color.Crimson;
+            pictureBox3.Location = new Point(520, 86);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(800, 100);
+            pictureBox3.TabIndex = 3;
+            pictureBox3.TabStop = false;
             // 
             // speedTimer
             // 
             speedTimer.Interval = 1000;
             speedTimer.Tick += SpeedTimer_Tick;
             // 
-            // pictureBox4
-            // 
-            pictureBox4.Image = Properties.Resources.add;
-            pictureBox4.Location = new Point(185, 754);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(161, 154);
-            pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox4.TabIndex = 0;
-            pictureBox4.TabStop = false;
-            pictureBox4.Click += pictureBox4_Click;
-            // 
             // loopTimer
             // 
             loopTimer.Interval = 10000;
             loopTimer.Tick += LoopTimer_Tick;
             // 
+            // knightTimer
+            // 
+            knightTimer.Interval = 3000;
+            knightTimer.Tick += KnightTimer_Tick;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(324, 138);
+            label1.Name = "label1";
+            label1.Size = new Size(43, 15);
+            label1.TabIndex = 5;
+            label1.Text = "health:";
+            // 
             // Form1
             // 
             BackColor = Color.DarkOliveGreen;
             ClientSize = new Size(1904, 1041);
-            Controls.Add(pictureBox4);
+            Controls.Add(pictureBoxArcher);
+            Controls.Add(pictureBoxKnight);
             Controls.Add(pictureBoxEnemy2);
             Controls.Add(pictureBox3);
             Controls.Add(pictureBox1);
@@ -172,10 +188,11 @@
             ((System.ComponentModel.ISupportInitialize)pictureBoxTarget).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxMoving).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxEnemy2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxArcher).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBoxKnight).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxEnemy2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
