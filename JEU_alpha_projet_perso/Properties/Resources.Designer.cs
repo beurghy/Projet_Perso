@@ -63,6 +63,16 @@ namespace JEU_alpha_projet_perso.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap add {
+            get {
+                object obj = ResourceManager.GetObject("add", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap final_2d_grass_texture {
             get {
                 object obj = ResourceManager.GetObject("final_2d_grass_texture", resourceCulture);
@@ -96,6 +106,16 @@ namespace JEU_alpha_projet_perso.Properties {
         internal static System.Drawing.Bitmap medieval_tower_transparent_removebg_preview1 {
             get {
                 object obj = ResourceManager.GetObject("medieval_tower_transparent-removebg-preview1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap okayokayokay {
+            get {
+                object obj = ResourceManager.GetObject("okayokayokay", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

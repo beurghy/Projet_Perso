@@ -13,6 +13,9 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBoxEnemy2;
         private System.Windows.Forms.Timer speedTimer;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Timer loopTimer;
+        
 
         protected override void Dispose(bool disposing)
         {
@@ -22,6 +25,8 @@
             }
             base.Dispose(disposing);
         }
+
+
 
         private void InitializeComponent()
         {
@@ -37,6 +42,7 @@
             pictureBoxEnemy2 = new PictureBox();
             speedTimer = new System.Windows.Forms.Timer(components);
             pictureBox4 = new PictureBox();
+            loopTimer = new System.Windows.Forms.Timer(components);
             ((System.ComponentModel.ISupportInitialize)pictureBoxTarget).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxMoving).BeginInit();
@@ -58,73 +64,72 @@
             // 
             // pictureBoxTarget
             // 
-            pictureBoxTarget.BackColor = Color.Transparent;
             pictureBoxTarget.Image = Properties.Resources.medieval_tower_transparent_removebg_preview1;
-            pictureBoxTarget.Location = new Point(420, 86);
+            pictureBoxTarget.Location = new Point(1034, 153);
             pictureBoxTarget.Name = "pictureBoxTarget";
-            pictureBoxTarget.Size = new Size(400, 379);
+            pictureBoxTarget.Size = new Size(858, 720);
             pictureBoxTarget.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBoxTarget.TabIndex = 1;
+            pictureBoxTarget.TabIndex = 6;
             pictureBoxTarget.TabStop = false;
             // 
             // pictureBox2
             // 
-            pictureBox2.BackColor = Color.Transparent;
             pictureBox2.Image = Properties.Resources.vsyyy;
-            pictureBox2.Location = new Point(-187, 256);
+            pictureBox2.Location = new Point(-1, 439);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(625, 193);
+            pictureBox2.Size = new Size(1079, 320);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox2.TabIndex = 2;
+            pictureBox2.TabIndex = 7;
             pictureBox2.TabStop = false;
             // 
             // pictureBoxMoving
             // 
-            pictureBoxMoving.BackColor = Color.White;
             pictureBoxMoving.Image = Properties.Resources.pourquoi_removebg_preview;
-            pictureBoxMoving.Location = new Point(24, 324);
+            pictureBoxMoving.Location = new Point(12, 513);
             pictureBoxMoving.Name = "pictureBoxMoving";
-            pictureBoxMoving.Size = new Size(51, 49);
+            pictureBoxMoving.Size = new Size(66, 64);
             pictureBoxMoving.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBoxMoving.TabIndex = 0;
+            pictureBoxMoving.TabIndex = 5;
             pictureBoxMoving.TabStop = false;
             pictureBoxMoving.Click += PictureBoxMoving_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(520, 28);
+            label1.Location = new Point(324, 138);
+            label1.MaximumSize = new Size(100, 100);
             label1.Name = "label1";
             label1.Size = new Size(43, 15);
-            label1.TabIndex = 3;
+            label1.TabIndex = 100;
             label1.Text = "health:";
+            label1.Click += label1_Click;
             // 
             // pictureBox1
             // 
-            pictureBox1.BackColor = SystemColors.ActiveCaptionText;
-            pictureBox1.Location = new Point(520, 55);
+            pictureBox1.BackColor = Color.Black;
+            pictureBox1.Location = new Point(520, 86);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(200, 25);
-            pictureBox1.TabIndex = 4;
+            pictureBox1.Size = new Size(800, 100);
+            pictureBox1.TabIndex = 3;
             pictureBox1.TabStop = false;
             // 
             // pictureBox3
             // 
             pictureBox3.BackColor = Color.Crimson;
-            pictureBox3.Location = new Point(520, 55);
+            pictureBox3.Location = new Point(520, 86);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(200, 25);
-            pictureBox3.TabIndex = 5;
+            pictureBox3.Size = new Size(800, 100);
+            pictureBox3.TabIndex = 2;
             pictureBox3.TabStop = false;
             // 
             // pictureBoxEnemy2
             // 
             pictureBoxEnemy2.Image = Properties.Resources.goblin;
-            pictureBoxEnemy2.Location = new Point(24, 282);
+            pictureBoxEnemy2.Location = new Point(12, 614);
             pictureBoxEnemy2.Name = "pictureBoxEnemy2";
-            pictureBoxEnemy2.Size = new Size(38, 36);
+            pictureBoxEnemy2.Size = new Size(66, 65);
             pictureBoxEnemy2.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBoxEnemy2.TabIndex = 6;
+            pictureBoxEnemy2.TabIndex = 1;
             pictureBoxEnemy2.TabStop = false;
             pictureBoxEnemy2.Click += pictureBoxEnemy2_Click;
             // 
@@ -135,18 +140,24 @@
             // 
             // pictureBox4
             // 
-            pictureBox4.Location = new Point(78, 455);
+            pictureBox4.Image = Properties.Resources.add;
+            pictureBox4.Location = new Point(185, 754);
             pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(79, 74);
-            pictureBox4.TabIndex = 7;
+            pictureBox4.Size = new Size(161, 154);
+            pictureBox4.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox4.TabIndex = 0;
             pictureBox4.TabStop = false;
+            pictureBox4.Click += pictureBox4_Click;
+            // 
+            // loopTimer
+            // 
+            loopTimer.Interval = 10000;
+            loopTimer.Tick += LoopTimer_Tick;
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.DarkOliveGreen;
-            ClientSize = new Size(761, 668);
+            ClientSize = new Size(1904, 1041);
             Controls.Add(pictureBox4);
             Controls.Add(pictureBoxEnemy2);
             Controls.Add(pictureBox3);
@@ -168,7 +179,5 @@
             ResumeLayout(false);
             PerformLayout();
         }
-
-        private PictureBox pictureBox4;
     }
 }
