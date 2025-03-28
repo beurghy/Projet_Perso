@@ -6,7 +6,6 @@
         private System.Windows.Forms.PictureBox pictureBoxTarget;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBoxMoving;
-        private System.Windows.Forms.PictureBox pictureBoxEnemy2;
         private System.Windows.Forms.PictureBox pictureBoxArcher;
         private System.Windows.Forms.PictureBox pictureBoxKnight;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -15,7 +14,13 @@
         private System.Windows.Forms.Timer reappearTimer;
         private System.Windows.Forms.Timer speedTimer;
         private System.Windows.Forms.Timer loopTimer;
+        private System.Windows.Forms.Timer knightTimer;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Timer spawnTimer;
+        private System.Windows.Forms.Timer archerTimer;
+        private System.Windows.Forms.Timer difficultyTimer;
+        private System.Windows.Forms.PictureBox pictureBox4;
+
 
         protected override void Dispose(bool disposing)
         {
@@ -28,13 +33,24 @@
 
         private void InitializeComponent()
         {
+            // pictureBox4 (zone de spawn)
+            pictureBox4 = new System.Windows.Forms.PictureBox();
+            pictureBox4.BackColor = Color.Transparent;
+            pictureBox4.Location = new System.Drawing.Point(12, 400); // Ajuste comme tu veux
+            pictureBox4.Size = new System.Drawing.Size(100, 300);     // Taille de la zone de spawn
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.TabStop = false;
+            this.Controls.Add(pictureBox4);
+
             components = new System.ComponentModel.Container();
+            spawnTimer = new System.Windows.Forms.Timer(components);
+            archerTimer = new System.Windows.Forms.Timer(components);
+            difficultyTimer = new System.Windows.Forms.Timer(components);
             movementTimer = new System.Windows.Forms.Timer(components);
             reappearTimer = new System.Windows.Forms.Timer(components);
             pictureBoxTarget = new PictureBox();
             pictureBox2 = new PictureBox();
             pictureBoxMoving = new PictureBox();
-            pictureBoxEnemy2 = new PictureBox();
             pictureBoxArcher = new PictureBox();
             pictureBoxKnight = new PictureBox();
             pictureBox1 = new PictureBox();
@@ -43,15 +59,28 @@
             loopTimer = new System.Windows.Forms.Timer(components);
             knightTimer = new System.Windows.Forms.Timer(components);
             label1 = new Label();
+            pictureBox4 = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pictureBoxTarget).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxMoving).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxEnemy2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxArcher).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxKnight).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             SuspendLayout();
+            // 
+            // spawnTimer
+            // 
+            spawnTimer.Tick += SpawnTimer_Tick;
+            // 
+            // archerTimer
+            // 
+            archerTimer.Tick += ArcherTimer_Tick;
+            // 
+            // difficultyTimer
+            // 
+            difficultyTimer.Tick += DifficultyTimer_Tick;
             // 
             // movementTimer
             // 
@@ -70,40 +99,30 @@
             pictureBoxTarget.Name = "pictureBoxTarget";
             pictureBoxTarget.Size = new Size(858, 720);
             pictureBoxTarget.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBoxTarget.TabIndex = 7;
+            pictureBoxTarget.TabIndex = 6;
             pictureBoxTarget.TabStop = false;
             // 
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.vsyyy;
-            pictureBox2.Location = new Point(-1, 439);
+            pictureBox2.Location = new Point(-1, 86);
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(1079, 320);
+            pictureBox2.Size = new Size(1079, 787);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox2.TabIndex = 8;
+            pictureBox2.TabIndex = 7;
             pictureBox2.TabStop = false;
             // 
             // pictureBoxMoving
             // 
+            pictureBoxMoving.BackColor = Color.Ivory;
             pictureBoxMoving.Image = Properties.Resources.pourquoi_removebg_preview;
             pictureBoxMoving.Location = new Point(12, 513);
             pictureBoxMoving.Name = "pictureBoxMoving";
             pictureBoxMoving.Size = new Size(66, 64);
             pictureBoxMoving.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBoxMoving.TabIndex = 6;
+            pictureBoxMoving.TabIndex = 5;
             pictureBoxMoving.TabStop = false;
             pictureBoxMoving.Click += PictureBoxMoving_Click;
-            // 
-            // pictureBoxEnemy2
-            // 
-            pictureBoxEnemy2.Image = Properties.Resources.goblin;
-            pictureBoxEnemy2.Location = new Point(12, 614);
-            pictureBoxEnemy2.Name = "pictureBoxEnemy2";
-            pictureBoxEnemy2.Size = new Size(66, 65);
-            pictureBoxEnemy2.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBoxEnemy2.TabIndex = 2;
-            pictureBoxEnemy2.TabStop = false;
-            pictureBoxEnemy2.Click += pictureBoxEnemy2_Click;
             // 
             // pictureBoxArcher
             // 
@@ -133,7 +152,7 @@
             pictureBox1.Location = new Point(520, 86);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(800, 100);
-            pictureBox1.TabIndex = 4;
+            pictureBox1.TabIndex = 3;
             pictureBox1.TabStop = false;
             // 
             // pictureBox3
@@ -142,7 +161,7 @@
             pictureBox3.Location = new Point(520, 86);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(800, 100);
-            pictureBox3.TabIndex = 3;
+            pictureBox3.TabIndex = 2;
             pictureBox3.TabStop = false;
             // 
             // speedTimer
@@ -166,16 +185,24 @@
             label1.Location = new Point(324, 138);
             label1.Name = "label1";
             label1.Size = new Size(43, 15);
-            label1.TabIndex = 5;
+            label1.TabIndex = 4;
             label1.Text = "health:";
+            // 
+            // pictureBox4
+            // 
+            pictureBox4.Location = new Point(-1, 246);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(27, 486);
+            pictureBox4.TabIndex = 8;
+            pictureBox4.TabStop = false;
             // 
             // Form1
             // 
             BackColor = Color.DarkOliveGreen;
             ClientSize = new Size(1904, 1041);
+            Controls.Add(pictureBox4);
             Controls.Add(pictureBoxArcher);
             Controls.Add(pictureBoxKnight);
-            Controls.Add(pictureBoxEnemy2);
             Controls.Add(pictureBox3);
             Controls.Add(pictureBox1);
             Controls.Add(label1);
@@ -188,13 +215,15 @@
             ((System.ComponentModel.ISupportInitialize)pictureBoxTarget).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxMoving).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBoxEnemy2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxArcher).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxKnight).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
+
+        private PictureBox pictureBox4;
     }
 }
