@@ -17,10 +17,8 @@ namespace JEU_alpha_projet_perso
         private double enemy2Speed = 11;
         private double speedIncrement = 0.256789;
 
-        
-
         private bool archerShootEnemy1 = true;
-        private int spawnInterval = 9000;
+        private int spawnInterval = 2000;
         private int archerFireRate = 2200;
         private int archerUpgradeCost = 20;
 
@@ -34,12 +32,16 @@ namespace JEU_alpha_projet_perso
         private List<PictureBox> enemyList = new List<PictureBox>();
         private Random rand = new Random();
 
+        private System.Windows.Forms.Timer spawnTimer = new System.Windows.Forms.Timer();
+        private System.Windows.Forms.Timer archerTimer = new System.Windows.Forms.Timer();
+        private System.Windows.Forms.Timer knightTimer = new System.Windows.Forms.Timer();
+
         public Form1()
         {
+            InitializeComponent();
+
             SoundPlayer player = new SoundPlayer(@"C:\Users\maxfrossard\Downloads\lucky-streak-christian-game-show-music-4jesus-312720.wav");
             player.PlayLooping();
-
-            InitializeComponent(); // ← doit venir AVANT toute utilisation des composants
 
             originalX = pictureBoxMoving.Location.X;
             originalY = pictureBoxMoving.Location.Y;
@@ -49,171 +51,48 @@ namespace JEU_alpha_projet_perso
             Controls.Add(hpLabel);
             Controls.Add(scoreLabel);
 
-            // Maintenant on peut configurer les timers
-            movementTimer.Interval = 50;
-            movementTimer.Tick += MovementTimer_Tick;
-            movementTimer.Start();
-
-            speedTimer.Interval = 30000;
-            speedTimer.Tick += SpeedTimer_Tick;
-            speedTimer.Start();
-
-            loopTimer.Interval = 10000;
-            loopTimer.Tick += LoopTimer_Tick;
-
-            reappearTimer.Interval = 5000;
-            reappearTimer.Tick += ReappearTimer_Tick;
-
-            knightTimer.Interval = knightFireRate;
-            knightTimer.Tick += KnightTimer_Tick;
-
-            spawnTimer.Interval = spawnInterval;
-            spawnTimer.Tick += SpawnTimer_Tick;
+            // Timers
+            spawnTimer.Interval = 2000; // 1 ennemi toutes les 2 secondes
+            spawnTimer.Tick += (s, e) => SpawnEnemy();
             spawnTimer.Start();
+
 
             archerTimer.Interval = archerFireRate;
             archerTimer.Tick += ArcherTimer_Tick;
 
-            difficultyTimer.Interval = 30000;
-            difficultyTimer.Tick += DifficultyTimer_Tick;
-            difficultyTimer.Start();
+            knightTimer.Interval = knightFireRate;
+            knightTimer.Tick += KnightTimer_Tick;
         }
 
-
-        private void SpawnTimer_Tick(object sender, EventArgs e)
+        private void SpawnEnemy()
         {
-            SpawnMultipleEnemies(3); // Nombre d'ennemis par vague
+            PictureBox enemy = new PictureBox();
+            enemy.Image = rand.Next(2) == 0 ? Properties.Resources.goblin : Properties.Resources.pourquoi_removebg_preview;
+            enemy.Tag = "enemy";
+            enemy.Size = new Size(66, 64);
+            enemy.SizeMode = PictureBoxSizeMode.StretchImage;
+            enemy.BackColor = Color.Transparent;
+
+            // Position à l'intérieur de pictureBox4
+            Point spawnPoint = pictureBox4.PointToScreen(new Point(0, rand.Next(0, pictureBox4.Height - enemy.Height)));
+            spawnPoint = this.PointToClient(spawnPoint); // convertir en coordonnées du formulaire
+            enemy.Location = spawnPoint;
+            enemy.Parent = this;
+
+            enemy.Click += (s, e) =>
+            {
+                PictureBox clicked = (PictureBox)s;
+                Controls.Remove(clicked);
+                enemyList.Remove(clicked);
+                score += 15;
+                UpdateScoreLabel();
+            };
+
+            enemyList.Add(enemy);
+            Controls.Add(enemy);
+            enemy.BringToFront();
         }
 
-        private void SpawnMultipleEnemies(int count)
-        {
-            for (int i = 0; i < count; i++)
-            {
-                PictureBox newEnemy = new PictureBox();
-                newEnemy.Image = Properties.Resources.goblin;
-                newEnemy.Size = new Size(66, 65);
-                newEnemy.SizeMode = PictureBoxSizeMode.StretchImage;
-                newEnemy.Location = new Point(0, rand.Next(100, this.Height - 200));
-                newEnemy.Visible = true;
-
-                newEnemy.Click += (s, ev) =>
-                {
-                    PictureBox clickedEnemy = (PictureBox)s;
-                    score += 15;
-                    UpdateScoreLabel();
-                    Controls.Remove(clickedEnemy);
-                    enemyList.Remove(clickedEnemy);
-                };
-
-                enemyList.Add(newEnemy);
-                this.Controls.Add(newEnemy);
-                newEnemy.BringToFront();
-            }
-        }
-
-        private void MovementTimer_Tick(object sender, EventArgs e)
-        {
-            if (pictureBoxMoving.Visible)
-            {
-                pictureBoxMoving.Left += (int)enemy1Speed;
-                if (pictureBoxMoving.Bounds.IntersectsWith(pictureBoxTarget.Bounds))
-                {
-                    HP--;
-                    UpdateHpLabel();
-                    pictureBoxMoving.Location = new Point(originalX, originalY);
-                }
-                else if (pictureBoxMoving.Left > Width)
-                {
-                    pictureBoxMoving.Location = new Point(originalX, originalY);
-                }
-            }
-
-            foreach (var enemy in enemyList.ToArray())
-            {
-                enemy.Left += (int)enemy2Speed;
-
-                if (enemy.Bounds.IntersectsWith(pictureBoxTarget.Bounds))
-                {
-                    HP--;
-                    UpdateHpLabel();
-                    Controls.Remove(enemy);
-                    enemyList.Remove(enemy);
-                }
-                else if (enemy.Left > this.Width)
-                {
-                    Controls.Remove(enemy);
-                    enemyList.Remove(enemy);
-                }
-            }
-
-            if (HP <= 0)
-            {
-                movementTimer.Stop(); speedTimer.Stop(); spawnTimer.Stop();
-                archerTimer.Stop(); loopTimer.Stop(); knightTimer.Stop(); difficultyTimer.Stop();
-                MessageBox.Show("GAME OVER!");
-                this.Close();
-                MenuForm menu = new MenuForm();
-                menu.Show();
-            }
-        }
-
-        private void pictureBoxRecruit_Click(object sender, EventArgs e)
-        {
-            DialogResult dialogResult = MessageBox.Show("Hire:\nYes = Knight (350)\nNo = Archer (300 / Upgrade " + archerUpgradeCost + ")", "Recruit", MessageBoxButtons.YesNoCancel);
-
-            if (dialogResult == DialogResult.Yes)
-            {
-                if (!knightHired)
-                {
-                    if (score >= 300)
-                    {
-                        score -= 300;
-                        knightHired = true;
-                        knightTimer.Start();
-                        pictureBoxKnight.Image = Properties.Resources.knight;
-                    }
-                    else MessageBox.Show("Not enough score for Knight!");
-                }
-                else
-                {
-                    if (score >= knightUpgradeCost)
-                    {
-                        score -= knightUpgradeCost;
-                        knightFireRate = Math.Max(200, knightFireRate - 300);
-                        knightTimer.Interval = knightFireRate;
-                        knightUpgradeCost += 25;
-                    }
-                    else MessageBox.Show("Not enough score to upgrade Knight!");
-                }
-            }
-            else if (dialogResult == DialogResult.No)
-            {
-                if (!archerHired)
-                {
-                    if (score >= 300)
-                    {
-                        score -= 300;
-                        archerHired = true;
-                        archerTimer.Start();
-                        pictureBoxArcher.Image = Properties.Resources.okayokayokay;
-                    }
-                    else MessageBox.Show("Not enough score for Archer!");
-                }
-                else
-                {
-                    if (score >= archerUpgradeCost)
-                    {
-                        score -= archerUpgradeCost;
-                        archerFireRate = Math.Max(200, archerFireRate - 300);
-                        archerTimer.Interval = archerFireRate;
-                        archerUpgradeCost += 20;
-                    }
-                    else MessageBox.Show("Not enough score to upgrade Archer!");
-                }
-            }
-
-            UpdateScoreLabel();
-        }
 
         private void ArcherTimer_Tick(object sender, EventArgs e)
         {
@@ -239,66 +118,9 @@ namespace JEU_alpha_projet_perso
             }
         }
 
-        private void LoopTimer_Tick(object sender, EventArgs e)
-        {
-            if (pictureBoxMoving.Visible)
-            {
-                pictureBoxMoving.Visible = false;
-                pictureBoxMoving.Location = new Point(originalX, originalY);
-                score += 10;
-            }
-
-            foreach (var enemy in enemyList.ToArray())
-            {
-                Controls.Remove(enemy);
-                enemyList.Remove(enemy);
-                score += 10;
-            }
-
-            UpdateScoreLabel();
-            reappearTimer.Start();
-        }
-
-        private void ReappearTimer_Tick(object sender, EventArgs e)
-        {
-            if (!pictureBoxMoving.Visible) pictureBoxMoving.Visible = true;
-            reappearTimer.Stop();
-        }
-
-        private void PictureBoxMoving_Click(object sender, EventArgs e)
-        {
-            pictureBoxMoving.Visible = false;
-            pictureBoxMoving.Location = new Point(originalX, originalY);
-            score += 25;
-            UpdateScoreLabel();
-            reappearTimer.Start();
-        }
-
-        private void UpdateHpLabel()
-        {
-            hpLabel.Text = "HP : " + HP;
-            int newWidth = 800 - (8 * (100 - HP));
-            pictureBox3.Size = new Size(Math.Max(0, newWidth), pictureBox3.Height);
-        }
-
         private void UpdateScoreLabel()
         {
             scoreLabel.Text = "Score : " + score;
-        }
-
-        private void SpeedTimer_Tick(object sender, EventArgs e)
-        {
-            enemy1Speed += speedIncrement;
-            enemy2Speed += speedIncrement;
-        }
-
-        private void DifficultyTimer_Tick(object sender, EventArgs e)
-        {
-            if (spawnInterval > 3000)
-            {
-                spawnInterval -= 1000;
-                spawnTimer.Interval = spawnInterval;
-            }
         }
     }
 }
