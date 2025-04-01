@@ -17,3 +17,6 @@ build_property.RootNamespace = JEU_alpha_projet_perso
 build_property.ProjectDir = H:\JEU_alpha_projet_perso\JEU_alpha_projet_perso\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.CsWinRTUseWindowsUIXamlProjections = false
+build_property.EffectiveAnalysisLevelStyle = 8.0
+build_property.EnableCodeStyleSeverity = 
