@@ -283,7 +283,7 @@ namespace JEU_alpha_projet_perso
             UpdateScoreLabel();
 
         }
-
+        
 
 
 
@@ -363,6 +363,10 @@ namespace JEU_alpha_projet_perso
                 archerTimer.Stop(); loopTimer.Stop(); knightTimer.Stop(); difficultyTimer.Stop();
 
                 MessageBox.Show("GAME OVER!");
+                string pseudo = DemanderPseudo();
+
+                // Affiche le message de fin avec le pseudo
+                MessageBox.Show($"GAME OVER, {pseudo}!", "Fin du jeu", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 this.Close();
 
@@ -372,6 +376,32 @@ namespace JEU_alpha_projet_perso
 
             }
 
+        }
+        private string DemanderPseudo()
+        {
+            Form prompt = new Form()
+            {
+                Width = 300,
+                Height = 150,
+                Text = "Pseudo",
+                FormBorderStyle = FormBorderStyle.FixedDialog,
+                StartPosition = FormStartPosition.CenterScreen,
+                MinimizeBox = false,
+                MaximizeBox = false
+            };
+
+            Label textLabel = new Label() { Left = 20, Top = 20, Text = "Quel est votre pseudo ?" };
+            TextBox inputBox = new TextBox() { Left = 20, Top = 50, Width = 240 };
+            Button confirmation = new Button() { Text = "OK", Left = 180, Width = 80, Top = 80, DialogResult = DialogResult.OK };
+
+            confirmation.Click += (sender, e) => { prompt.Close(); };
+
+            prompt.Controls.Add(textLabel);
+            prompt.Controls.Add(inputBox);
+            prompt.Controls.Add(confirmation);
+            prompt.AcceptButton = confirmation;
+
+            return prompt.ShowDialog() == DialogResult.OK ? inputBox.Text : "Joueur";
         }
 
 
@@ -543,4 +573,3 @@ namespace JEU_alpha_projet_perso
     }
 
 }
-

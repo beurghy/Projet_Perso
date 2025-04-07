@@ -73,6 +73,26 @@ namespace JEU_alpha_projet_perso.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap enemy1Image {
+            get {
+                object obj = ResourceManager.GetObject("enemy1Image", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap enemy2Image {
+            get {
+                object obj = ResourceManager.GetObject("enemy2Image", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap final_2d_grass_texture {
             get {
                 object obj = ResourceManager.GetObject("final_2d_grass_texture", resourceCulture);
