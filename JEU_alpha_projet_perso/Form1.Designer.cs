@@ -57,6 +57,13 @@
         private void InitializeComponent()
 
         {
+            survivalLabel = new Label() { Text = "Temps : 0:00", Location = new Point(10, 30), AutoSize = true };
+            Controls.Add(survivalLabel);
+
+            survivalTimer.Interval = 1000; // chaque seconde
+            survivalTimer.Tick += SurvivalTimer_Tick;
+            survivalTimer.Start();
+
             components = new System.ComponentModel.Container();
             movementTimer = new System.Windows.Forms.Timer(components);
             reappearTimer = new System.Windows.Forms.Timer(components);
