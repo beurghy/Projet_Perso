@@ -1,38 +1,72 @@
-﻿namespace MonJeu
+﻿/*
+
+ ▄▄▄▄   ▓█████  █    ██  ██▀███    ▄████  ██░ ██▓██   ██▓
+▓█████▄ ▓█   ▀  ██  ▓██▒▓██ ▒ ██▒ ██▒ ▀█▒▓██░ ██▒▒██  ██▒
+▒██▒ ▄██▒███   ▓██  ▒██░▓██ ░▄█ ▒▒██░▄▄▄░▒██▀▀██░ ▒██ ██░
+▒██░█▀  ▒▓█  ▄ ▓▓█  ░██░▒██▀▀█▄  ░▓█  ██▓░▓█ ░██  ░ ▐██▓░
+░▓█  ▀█▓░▒████▒▒▒█████▓ ░██▓ ▒██▒░▒▓███▀▒░▓█▒░██▓ ░ ██▒▓░
+░▒▓███▀▒░░ ▒░ ░░▒▓▒ ▒ ▒ ░ ▒▓ ░▒▓░ ░▒   ▒  ▒ ░░▒░▒  ██▒▒▒ 
+▒░▒   ░  ░ ░  ░░░▒░ ░ ░   ░▒ ░ ▒░  ░   ░  ▒ ░▒░ ░▓██ ░▒░ 
+ ░    ░    ░    ░░░ ░ ░   ░░   ░ ░ ░   ░  ░  ░░ ░▒ ▒ ░░  
+ ░         ░  ░   ░        ░           ░  ░  ░  ░░ ░     
+      ░                                          ░ ░     
+*/
+/*
+auteur : maxime frossard
+date de création : 10 mars 2025
+date de modification : 05 mai 2025
+description : designer du menu du jeu
+*/
+
+namespace MonJeu
 {
     partial class MenuForm
     {
+        // conteneur pour les composants graphiques
         private System.ComponentModel.IContainer components = null;
-        private Button startButton;
 
+        // boutons du menu
+        private Button startButton;
+        private Button button1; // bouton pour afficher le classement
+        private Button creditsButton;
+        private Button siteButton;
+
+        // libère les ressources utilisées
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null)) components.Dispose();
             base.Dispose(disposing);
         }
 
+        // initialise tous les éléments graphiques de la fenêtre
         private void InitializeComponent()
         {
-            this.startButton = new System.Windows.Forms.Button();
-            this.SuspendLayout();
-            // 
-            // startButton
-            // 
-            this.startButton.Font = new System.Drawing.Font("Segoe UI", 14F);
-            this.startButton.Location = new System.Drawing.Point(100, 100);
-            this.startButton.Name = "startButton";
-            this.startButton.Size = new System.Drawing.Size(200, 50);
-            this.startButton.Text = "Démarrer le jeu";
-            this.startButton.UseVisualStyleBackColor = true;
-            this.startButton.Click += new System.EventHandler(this.startButton_Click);
-            // 
-            // MenuForm
-            // 
-            this.ClientSize = new System.Drawing.Size(400, 300);
-            this.Controls.Add(this.startButton);
-            this.Name = "MenuForm";
-            this.Text = "Menu Principal";
-            this.ResumeLayout(false);
+            // création des boutons
+            startButton = new Button();
+            button1 = new Button();
+            creditsButton = new Button();
+            siteButton = new Button();
+            SuspendLayout();
+
+            // bouton pour démarrer le jeu
+            
+            startButton.Click += startButton_Click;
+
+            // bouton pour afficher le classement
+            
+            button1.Click += button1_Click;
+
+            // bouton pour afficher les crédits
+            
+            creditsButton.Click += CreditsButton_Click;
+
+            // bouton pour ouvrir le site ou portfolio
+            
+            siteButton.Click += SiteButton_Click;
+
+            // configuration générale de la fenêtre du menu
+            
+            ResumeLayout(false);
         }
     }
 }
