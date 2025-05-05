@@ -1,78 +1,72 @@
-﻿namespace MonJeu
+﻿/*
+
+ ▄▄▄▄   ▓█████  █    ██  ██▀███    ▄████  ██░ ██▓██   ██▓
+▓█████▄ ▓█   ▀  ██  ▓██▒▓██ ▒ ██▒ ██▒ ▀█▒▓██░ ██▒▒██  ██▒
+▒██▒ ▄██▒███   ▓██  ▒██░▓██ ░▄█ ▒▒██░▄▄▄░▒██▀▀██░ ▒██ ██░
+▒██░█▀  ▒▓█  ▄ ▓▓█  ░██░▒██▀▀█▄  ░▓█  ██▓░▓█ ░██  ░ ▐██▓░
+░▓█  ▀█▓░▒████▒▒▒█████▓ ░██▓ ▒██▒░▒▓███▀▒░▓█▒░██▓ ░ ██▒▓░
+░▒▓███▀▒░░ ▒░ ░░▒▓▒ ▒ ▒ ░ ▒▓ ░▒▓░ ░▒   ▒  ▒ ░░▒░▒  ██▒▒▒ 
+▒░▒   ░  ░ ░  ░░░▒░ ░ ░   ░▒ ░ ▒░  ░   ░  ▒ ░▒░ ░▓██ ░▒░ 
+ ░    ░    ░    ░░░ ░ ░   ░░   ░ ░ ░   ░  ░  ░░ ░▒ ▒ ░░  
+ ░         ░  ░   ░        ░           ░  ░  ░  ░░ ░     
+      ░                                          ░ ░     
+*/
+/*
+auteur : maxime frossard
+date de création : 10 mars 2025
+date de modification : 05 mai 2025
+description : designer du menu du jeu
+*/
+
+namespace MonJeu
 {
     partial class MenuForm
     {
+        // conteneur pour les composants graphiques
         private System.ComponentModel.IContainer components = null;
-        private Button startButton;
-        private Button button1;
 
+        // boutons du menu
+        private Button startButton;
+        private Button button1; // bouton pour afficher le classement
+        private Button creditsButton;
+        private Button siteButton;
+
+        // libère les ressources utilisées
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null)) components.Dispose();
             base.Dispose(disposing);
         }
 
+        // initialise tous les éléments graphiques de la fenêtre
         private void InitializeComponent()
         {
+            // création des boutons
             startButton = new Button();
             button1 = new Button();
             creditsButton = new Button();
             siteButton = new Button();
             SuspendLayout();
-            // 
-            // startButton
-            // 
-            startButton.Font = new Font("Segoe UI", 14F);
-            startButton.Location = new Point(96, 64);
-            startButton.Name = "startButton";
-            startButton.Size = new Size(200, 50);
-            startButton.TabIndex = 0;
-            startButton.Text = "Démarrer le jeu";
-            startButton.UseVisualStyleBackColor = true;
+
+            // bouton pour démarrer le jeu
+            
             startButton.Click += startButton_Click;
-            // 
-            // button1
-            // 
-            button1.Font = new Font("Segoe UI", 14F);
-            button1.Location = new Point(96, 120);
-            button1.Name = "button1";
-            button1.Size = new Size(200, 50);
-            button1.TabIndex = 1;
-            button1.Text = "Classement";
-            button1.UseVisualStyleBackColor = true;
+
+            // bouton pour afficher le classement
+            
             button1.Click += button1_Click;
-            // 
-            // creditsButton
-            // 
-            creditsButton.Location = new Point(96, 176);
-            creditsButton.Name = "creditsButton";
-            creditsButton.Size = new Size(200, 50);
-            creditsButton.TabIndex = 2;
-            creditsButton.Text = "Crédits";
+
+            // bouton pour afficher les crédits
+            
             creditsButton.Click += CreditsButton_Click;
-            // 
-            // siteButton
-            // 
-            siteButton.Location = new Point(96, 232);
-            siteButton.Name = "siteButton";
-            siteButton.Size = new Size(200, 50);
-            siteButton.TabIndex = 3;
-            siteButton.Text = "Mon Portfolio";
+
+            // bouton pour ouvrir le site ou portfolio
+            
             siteButton.Click += SiteButton_Click;
-            // 
-            // MenuForm
-            // 
-            ClientSize = new Size(400, 350);
-            Controls.Add(button1);
-            Controls.Add(startButton);
-            Controls.Add(creditsButton);
-            Controls.Add(siteButton);
-            Name = "MenuForm";
-            Text = "Menu Principal";
+
+            // configuration générale de la fenêtre du menu
+            
             ResumeLayout(false);
         }
-
-        private Button creditsButton;
-        private Button siteButton;
     }
 }
