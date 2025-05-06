@@ -580,11 +580,15 @@ namespace MonJeu
             {
                 ColumnCount = 4,
                 RowCount = scores.Count + 1,
-                Dock = DockStyle.Top,
+                Dock = DockStyle.None, // Dock must be NONE to set Location manually
                 AutoSize = true,
                 CellBorderStyle = TableLayoutPanelCellBorderStyle.Single,
                 BackColor = Color.FromArgb(20, 50, 80)
             };
+
+            table.Location = new Point(0, 50); // Simulates margin-top: -10px
+
+
 
             // Ajouter les en-têtes
             table.Controls.Add(CreateHeaderLabel("RANG"), 0, 0);
