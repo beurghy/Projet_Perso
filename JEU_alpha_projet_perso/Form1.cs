@@ -112,7 +112,7 @@ namespace JEU_alpha_projet_perso
 
             // crée les étiquettes de points de vie et de score
             hpLabel = new Label() { Text = "HP : " + HP, Location = new Point(570, 28), AutoSize = true };
-            scoreLabel = new Label() { Text = "Score : " + score, Location = new Point(10, 10), AutoSize = true };
+            scoreLabel = new Label() { Text = "Score : " + score };
             Controls.Add(hpLabel);
             Controls.Add(scoreLabel);
 
@@ -152,7 +152,7 @@ namespace JEU_alpha_projet_perso
         private void pictureBoxRecruit_Click(object sender, EventArgs e)
         {
             // affiche la boîte de recrutement
-            DialogResult dialogResult = MessageBox.Show("Hire:\nYes = Knight (350)\nNo = Archer (300 / Upgrade " + archerUpgradeCost + ")", "Recruit", MessageBoxButtons.YesNoCancel);
+            DialogResult dialogResult = MessageBox.Show("Hire:\nYes = Knight  (300 / Upgrade "+ knightUpgradeCost +")\nNo = Archer (300 / Upgrade " + archerUpgradeCost + ")", "Recruit", MessageBoxButtons.YesNoCancel);
 
             if (dialogResult == DialogResult.Yes)
             {
@@ -354,7 +354,7 @@ namespace JEU_alpha_projet_perso
         private void UpdateScoreLabel()
         {
             // met à jour l’affichage du score
-            scoreLabel.Text = "Score : " + score;
+            survivalLabel.Text = "Score : " + score;
         }
 
         private void SpeedTimer_Tick(object sender, EventArgs e)

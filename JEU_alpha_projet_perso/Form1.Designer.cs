@@ -37,6 +37,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             survivalLabel = new Label();
             movementTimer = new System.Windows.Forms.Timer(components);
             reappearTimer = new System.Windows.Forms.Timer(components);
@@ -62,10 +63,10 @@
             // 
             // survivalLabel
             // 
-            survivalLabel.BackColor = Color.Transparent;
-            survivalLabel.Location = new Point(12, 9);
+            survivalLabel.BackColor = Color.WhiteSmoke;
+            survivalLabel.Location = new Point(0, -2);
             survivalLabel.Name = "survivalLabel";
-            survivalLabel.Size = new Size(100, 23);
+            survivalLabel.Size = new Size(94, 33);
             survivalLabel.TabIndex = 0;
             survivalLabel.Click += survivalLabel_Click;
             // 
@@ -97,7 +98,8 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(186, 412);
+            label1.BackColor = Color.FloralWhite;
+            label1.Location = new Point(46, 104);
             label1.Name = "label1";
             label1.Size = new Size(43, 15);
             label1.TabIndex = 6;
@@ -115,8 +117,8 @@
             // 
             // pictureBoxMoving
             // 
-            pictureBoxMoving.BackColor = Color.Ivory;
-            pictureBoxMoving.Image = Properties.Resources.pourquoi_removebg_preview;
+            pictureBoxMoving.BackColor = Color.Transparent;
+            pictureBoxMoving.Image = (Image)resources.GetObject("pictureBoxMoving.Image");
             pictureBoxMoving.Location = new Point(12, 434);
             pictureBoxMoving.Name = "pictureBoxMoving";
             pictureBoxMoving.Size = new Size(66, 64);
@@ -127,6 +129,7 @@
             // 
             // pictureBoxEnemy2
             // 
+            pictureBoxEnemy2.BackColor = Color.Transparent;
             pictureBoxEnemy2.Image = Properties.Resources.goblin;
             pictureBoxEnemy2.Location = new Point(12, 504);
             pictureBoxEnemy2.Name = "pictureBoxEnemy2";
@@ -138,6 +141,7 @@
             // 
             // pictureBoxArcher
             // 
+            pictureBoxArcher.BackColor = Color.Transparent;
             pictureBoxArcher.Image = Properties.Resources.add;
             pictureBoxArcher.Location = new Point(100, 754);
             pictureBoxArcher.Name = "pictureBoxArcher";
@@ -149,6 +153,7 @@
             // 
             // pictureBoxKnight
             // 
+            pictureBoxKnight.BackColor = Color.Transparent;
             pictureBoxKnight.Image = Properties.Resources.add;
             pictureBoxKnight.Location = new Point(250, 754);
             pictureBoxKnight.Name = "pictureBoxKnight";
@@ -161,24 +166,23 @@
             // pictureBox1
             // 
             pictureBox1.BackColor = Color.Black;
-            pictureBox1.Location = new Point(520, 86);
+            pictureBox1.Location = new Point(100, 12);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(800, 100);
+            pictureBox1.Size = new Size(832, 73);
             pictureBox1.TabIndex = 5;
             pictureBox1.TabStop = false;
             // 
             // pictureBox3
             // 
             pictureBox3.BackColor = Color.Crimson;
-            pictureBox3.Location = new Point(520, 86);
+            pictureBox3.Location = new Point(118, 21);
             pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(800, 100);
+            pictureBox3.Size = new Size(800, 54);
             pictureBox3.TabIndex = 4;
             pictureBox3.TabStop = false;
             // 
             // Form1
             // 
-            BackColor = Color.DarkOliveGreen;
             BackgroundImage = Properties.Resources.backgroundni;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1904, 1041);
