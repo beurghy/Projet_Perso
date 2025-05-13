@@ -37,7 +37,6 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             survivalLabel = new Label();
             movementTimer = new System.Windows.Forms.Timer(components);
             reappearTimer = new System.Windows.Forms.Timer(components);
@@ -118,10 +117,10 @@
             // pictureBoxMoving
             // 
             pictureBoxMoving.BackColor = Color.Transparent;
-            pictureBoxMoving.Image = (Image)resources.GetObject("pictureBoxMoving.Image");
-            pictureBoxMoving.Location = new Point(12, 434);
+            pictureBoxMoving.Image = Properties.Resources.pourquoi_removebg_preview;
+            pictureBoxMoving.Location = new Point(-14, 347);
             pictureBoxMoving.Name = "pictureBoxMoving";
-            pictureBoxMoving.Size = new Size(66, 64);
+            pictureBoxMoving.Size = new Size(150, 144);
             pictureBoxMoving.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBoxMoving.TabIndex = 7;
             pictureBoxMoving.TabStop = false;
@@ -131,9 +130,9 @@
             // 
             pictureBoxEnemy2.BackColor = Color.Transparent;
             pictureBoxEnemy2.Image = Properties.Resources.goblin;
-            pictureBoxEnemy2.Location = new Point(12, 504);
+            pictureBoxEnemy2.Location = new Point(12, 486);
             pictureBoxEnemy2.Name = "pictureBoxEnemy2";
-            pictureBoxEnemy2.Size = new Size(66, 65);
+            pictureBoxEnemy2.Size = new Size(124, 120);
             pictureBoxEnemy2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBoxEnemy2.TabIndex = 3;
             pictureBoxEnemy2.TabStop = false;

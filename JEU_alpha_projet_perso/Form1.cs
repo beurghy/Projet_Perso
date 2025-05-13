@@ -61,11 +61,11 @@ namespace JEU_alpha_projet_perso
         private Label hpLabel, scoreLabel;
 
         // vitesses des ennemis
-        private double enemy1Speed = 9;
-        private double enemy2Speed = 11;
+        private double enemy1Speed = 18;
+        private double enemy2Speed = 22;
 
         // augmentation de la vitesse avec le temps
-        private double speedIncrement = 0.256789;
+        private double speedIncrement = 0.3;
 
         // fréquence d’apparition des ennemis
         private int spawnInterval = 9000;
