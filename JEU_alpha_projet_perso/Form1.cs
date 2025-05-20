@@ -33,6 +33,14 @@ namespace JEU_alpha_projet_perso
 {
     public partial class Form1 : Form
     {
+        private Color backgroundColor = Color.FromArgb(27, 38, 59);
+        private Color buttonColor = Color.FromArgb(15, 76, 117);
+        private Color buttonHoverColor = Color.FromArgb(50, 130, 184);
+        private Color textColor = Color.FromArgb(187, 225, 250);
+        private Font titleFont;
+        private Font buttonFont;
+        private Image backgroundImage;
+        private Image gameLogo;
         // durée de survie du joueur
         private TimeSpan survivalTime = TimeSpan.Zero;
 
@@ -141,7 +149,40 @@ namespace JEU_alpha_projet_perso
             movementTimer.Start();
             speedTimer.Start();
         }
+        private void InitializeCustomDesign()
+        {
+            // Configuration de base du formulaire
+            this.FormBorderStyle = FormBorderStyle.None;
+            this.WindowState = FormWindowState.Maximized;
+            this.BackColor = backgroundColor;
+            this.DoubleBuffered = true;
 
+            // Chargement des polices et images
+            try
+            {
+                titleFont = new Font("Segoe UI", 32, FontStyle.Bold);
+                buttonFont = new Font("Segoe UI", 14, FontStyle.Bold);
+
+                // Essayez de charger l'image de fond - utilisez une image par défaut si échoue
+                
+
+                // Essayez de charger le logo - utilisez un texte par défaut si échoue
+                try
+                {
+                    gameLogo = Image.FromFile("Resources/logo.png");
+                }
+                catch
+                {
+                    gameLogo = null;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Erreur de chargement des ressources: " + ex.Message);
+            }
+
+            
+        }
         private void SurvivalTimer_Tick(object sender, EventArgs e)
         {
             // ajoute une seconde au temps de survie et met à jour l’affichage
@@ -368,10 +409,30 @@ namespace JEU_alpha_projet_perso
         {
 
         }
-
-        private void survivalLabel_Click(object sender, EventArgs e)
+        private void AddExitButton()
         {
+            // Créer un bouton pour quitter
+            Button exitButton = new Button
+            {
+                Name = "exitButton",
+                Text = "X",
+                Size = new Size(40, 40),
+                FlatStyle = FlatStyle.Flat,
+                BackColor = Color.FromArgb(150, 30, 30),
+                ForeColor = Color.White,
+                Font = new Font("Arial", 12, FontStyle.Bold),
+                Cursor = Cursors.Hand,
+                TabStop = false
+            };
 
+            exitButton.FlatAppearance.BorderSize = 0;
+            exitButton.Click += (s, e) => Application.Exit();
+            exitButton.MouseEnter += (s, e) => exitButton.BackColor = Color.FromArgb(200, 50, 50);
+            exitButton.MouseLeave += (s, e) => exitButton.BackColor = Color.FromArgb(150, 30, 30);
+
+            this.Controls.Add(exitButton);
+            exitButton.Location = new Point(this.ClientSize.Width - exitButton.Width - 20, 20);
         }
+
     }
 }

@@ -67,7 +67,7 @@
             survivalLabel.Name = "survivalLabel";
             survivalLabel.Size = new Size(94, 33);
             survivalLabel.TabIndex = 0;
-            survivalLabel.Click += survivalLabel_Click;
+            
             // 
             // movementTimer
             // 
@@ -193,10 +193,12 @@
             Controls.Add(pictureBox1);
             Controls.Add(label1);
             Controls.Add(pictureBoxMoving);
+            
             Controls.Add(pictureBoxTarget);
             DoubleBuffered = true;
             Name = "Form1";
             Text = "Form1";
+            
             Load += Form1_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBoxTarget).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxMoving).EndInit();
@@ -207,6 +209,14 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ResumeLayout(false);
             PerformLayout();
+            
+            SuspendLayout();
+
+           
+
+            
+
+            
         }
     }
 }
